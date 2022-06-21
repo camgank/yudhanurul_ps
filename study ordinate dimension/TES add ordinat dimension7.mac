@@ -1,0 +1,132 @@
+//   //DRAWINGSELECT POPUPCOMMAND MODIFY VIEW EDIT DEACTIVATE CANCEL
+//DRAWINGSELECT POPUPCOMMAND MODIFY
+//ACTIVE OFF
+//ACCEPT
+INPUT POINT "posisi" $posisi
+//LET $posisi_x = 315
+//LET $posisi_y = 150
+//LET $posisi_z = 0
+//DRAWINGSELECT POPUPCOMMAND MODIFY
+//ACTIVE ON
+//ACCEPT
+//    //INPUT FREE
+
+//print $posisi
+print error $posisi_x
+print error $posisi_y
+print error $posisi_z
+
+INPUT FREE
+
+EVERYTHING PARTIALBOX
+FILTERBUTTON FILTERITEMS
+InvertType
+SelectType  Arc   CompositeCurve   Curve   Line 
+StyleType Pattern
+InvertStyle
+SelectStyle "CentreLine"
+NextItem "DotDash"
+AllLevels
+ALL
+ACCEPT
+EVERYTHING PARTIALBOX
+
+LET jumlah = selection.number
+
+WHILE $jumlah {
+	
+	//LET jumlah = selection.number
+	LET s_com = $jumlah - 1
+
+	LET $l_name = selection.name[$s_com]
+	LET xe = line[$l_name].end.x
+	LET ye = line[$l_name].end.y
+	LET ze = line[$l_name].end.z
+	LET xs = line[$l_name].start.x
+	LET ys = line[$l_name].start.y
+	LET zs = line[$l_name].start.z
+	//LET $sama = $ye - $ys
+	if ($ye == $ys) {
+		select clearlist
+		//LET add = concatenate ('add ';'line ';'"';$l_name;'"')
+		//EXECUTE COMMAND $add
+		//IF $ye == $ys {
+			//GOTO selanjutnya
+		//}  ELSE {
+			
+		//add Line $l_name
+		create dimension ORDINATE
+		//print error "point pertama 000"
+		0 0 0
+		//print error "garis pertama $X $Y $Z "
+		$xe $ye $ze
+		
+		//INPUT FREE
+		$posisi_x $posisi_y $posisi_z
+		//add Line $l_name	
+		//print error "1"
+		//INPUT FREE
+
+		:selanjutnya
+	
+		LET jumlah = $jumlah - 1
+		//select clearlist
+		//LET jumlah = $jumlah - $jumlah
+		0 0 0
+		EVERYTHING PARTIALBOX
+		FILTERBUTTON FILTERITEMS
+		InvertType
+		SelectType  Arc   CompositeCurve   Curve   Line 
+		StyleType Pattern
+		InvertStyle
+		SelectStyle "CentreLine"
+		NextItem "DotDash"
+		AllLevels
+		ALL
+		ACCEPT
+		EVERYTHING PARTIALBOX
+
+		} else {
+
+		LET jumlah = $jumlah - 1
+		//select clearlist
+		//LET jumlah = $jumlah - $jumlah
+		0 0 0
+		EVERYTHING PARTIALBOX
+		FILTERBUTTON FILTERITEMS
+		InvertType
+		SelectType  Arc   CompositeCurve   Curve   Line 
+		StyleType Pattern
+		InvertStyle
+		SelectStyle "CentreLine"
+		NextItem "DotDash"
+		AllLevels
+		ALL
+		ACCEPT
+		EVERYTHING PARTIALBOX
+
+	}
+
+	
+	
+	
+	
+}
+//create dimension ORDINATE
+	//print error "point pertama 000"
+//0 0 0
+//0 0 0
+//$posisi_x $posisi_y $posisi_z
+//INPUT FREE
+cancel
+quit
+quit
+quit
+select
+RETURN
+
+
+
+
+
+
